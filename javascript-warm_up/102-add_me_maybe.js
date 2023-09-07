@@ -1,5 +1,5 @@
-function incremetAndCall(number, theFunction){
+function addMeMaybe(number, theFunction){
     number++;
     theFunction(number);
 }
-module.exports = {incremetAndCall};
+module.exports = {addMeMaybe};
