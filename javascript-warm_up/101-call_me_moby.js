@@ -5,4 +5,4 @@ function executesXTimes(x, theFunction){
     i++;
    }
 }
-module.exports = {executesXtimes};
+module.exports = {executesXTimes};
