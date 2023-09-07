@@ -1,8 +1,8 @@
-function executesXTimes(x, theFunction){
-   let i = 0;
-   while (i<x){
-    thefucntion()
-    i++;
-   }
-}
-module.exports = {executesXTimes};
+function executeXTimes(x, theFunction) {
+    for (let i = 0; i < x; i++) {
+      theFunction();
+    }
+  }
+  
+  module.exports = { executeXTimes };
+  
