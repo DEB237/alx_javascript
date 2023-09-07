@@ -1,8 +1,9 @@
-function executeXTimes(x, theFunction) {
-    for (let i = 0; i < x; i++) {
+function callMeMoby(x, theFunction) {
+    if (x > 0) {
       theFunction();
+      callMeMoby(x - 1, theFunction);
     }
   }
   
-  module.exports = { executeXTimes };
+  module.exports = { callMeMoby };
   
