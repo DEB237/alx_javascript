@@ -1,6 +1,6 @@
 const myVar = 
 `C is fun
-Python is console
+Python is cool
 JavaScript is amazing`
 ;
 console.log(myVar);
