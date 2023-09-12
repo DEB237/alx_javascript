@@ -1,12 +1,14 @@
 class Rectangle{
     width;
     height;
-    constructor(w, h) {
-      if (w <= 0 || h <= 0 || typeof w !== 'number' || typeof h !== 'number') {
-       return {};  
+    constructor(w, h){
+        this.width = w;
+        this.height = h;
     }
-      this.width = w;
-      this.height = h;
+    islessthanzero(){
+        if (this.width, this.height <= 0){
+            const obj = {}
+        }
     }
     print(){
         for (let i = 0; i < this.height; i++){
