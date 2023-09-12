@@ -1,14 +1,15 @@
 #!/usr/bin/node
 class Rectangle {
     constructor(w, h) {
-      this.width = w;
-      this.height = h;
+      if (w <= 0 || h <= 0 || typeof w !== 'number' || typeof h !== 'number') {
+        this.width = undefined;
+        this.height = undefined;
+      } 
+      else {
+        this.width = w;
+        this.height = h;
       }
-    islessthanzero(){
-        if (this.width, this.height <= 0){
-            const obj = {}
-        }  
     }
   }
   
-module.exports = Rectangle;
+  module.exports = Rectangle;
