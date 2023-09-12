@@ -1,3 +1,4 @@
+import Square from "./6-square"
 class Square extends Square {
     charPrint(c) {
         if (c === undefined) {
