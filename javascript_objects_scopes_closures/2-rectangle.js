@@ -3,9 +3,11 @@ class Rectangle {
     constructor(w, h) {
       this.width = w;
       this.height = h;
-      if (w <= 0 || h <= 0){
-            return obj = {};
       }
+    islessthanzero(){
+        if (this.width, this.height <= 0){
+            const obj = {}
+        }  
     }
   }
   
