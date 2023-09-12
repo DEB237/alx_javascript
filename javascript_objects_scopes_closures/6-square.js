@@ -1,5 +1,5 @@
-const Square = require('./5-square');
-class Square extends Square {
+const Square1 = require('./5-square.js');
+class Square extends Square1 {
     charPrint(c) {
         if (c === undefined) {
             c = 'X';
