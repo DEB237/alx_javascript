@@ -1,4 +1,4 @@
-import Square from "./6-square"
+const Square = require('./5-square');
 class Square extends Square {
     charPrint(c) {
         if (c === undefined) {
@@ -9,4 +9,4 @@ class Square extends Square {
         }
     }
 }
-module.exports = Rectangle;
+module.exports = Square;
