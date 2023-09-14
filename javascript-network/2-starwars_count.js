@@ -4,7 +4,7 @@ const request = require('request');
 const id = process.argv[2];
 const url = `https://swapi-api.alx-tools.com/api/films/${id}`
 
-request.get(apiUrl, (error, response, body) => {
+request.get(Url, (error, response, body) => {
     if (error) {
       console.error('Error:', error);
     } else {
@@ -15,4 +15,3 @@ request.get(apiUrl, (error, response, body) => {
       console.log(moviesWithWedge.length);
     }
   });
-  
