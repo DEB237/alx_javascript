@@ -9,9 +9,18 @@ request.get(apiUrl, (error, response, body) => {
     console.error('Error:', error);
   } else {
     const films = JSON.parse(body).results;
-    const count = films.filter((film) =>
-      film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
-    ).length;
+    let count = 0;
+
+    films.forEach((film) => {
+      const characters = film.characters;
+      characters.forEach((characterUrl) => {
+        const id = characterUrl.split('/').slice(-2, -1)[0];
+        if (id === characterId.toString()) {
+          count++;
+        }
+      });
+    });
+
     console.log(count);
   }
 });
