@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const request = require('request');
 
-const apiUrl = process.argv[2]; // Get the API URL from command line arguments
+const apiUrl = process.argv[2]; 
 
 request.get(apiUrl, (error, response, body) => {
   if (error) {
