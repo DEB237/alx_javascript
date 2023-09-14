@@ -10,7 +10,7 @@ request.get(apiUrl, (error, response, body) => {
     } else {
       const films = JSON.parse(body).results;
       const moviesWithWedge = films.filter((film) => 
-      film.characters.includes(https://swapi-api.alx-tools.com/api/people/${characterId}/)
+      film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
       );
       console.log(moviesWithWedge.length);
     }

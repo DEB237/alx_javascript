@@ -2,8 +2,8 @@
 const fs = require('fs');
 const request = require('request');
 
-const url = process.argv[2]; // Get the URL from command line arguments
-const filePath = process.argv[3]; // Get the file path from command line arguments
+const url = process.argv[2]; 
+const filePath = process.argv[3]; 
 
 request.get(url, (error, response, body) => {
   if (error) {
@@ -13,7 +13,7 @@ request.get(url, (error, response, body) => {
       if (err) {
         console.error('Error writing to file:', err);
       } else {
-        console.log(`Webpage content saved to ${filePath}`);
+        console.log(filePath);
       }
     });
   }
