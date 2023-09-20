@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+</head>
+<body>
+  <script>
+    // Check if session storage is enabled
+    function isSessionStorageEnabled() {
+      try {
+        sessionStorage.setItem("test", "test");
+        sessionStorage.removeItem("test");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Array of available items
+    var availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+    // Global variable to store the cart count
+    var cartCount = sessionStorage.length;
+
+    // Global variable to store the message element
+    var messageElement = null;
+
+    // Check if session storage is enabled
+    if (!isSessionStorageEnabled()) {
+      var body = document.getElementsByTagName("body")[0];
+
+      var alertMessage = document.createElement("p");
+      alertMessage.textContent = "Sorry, your browser does not support Session storage. Try again with a better one.";
+      body.appendChild(alertMessage);
+    } else {
+      // Create the shopping cart
+      function addItemToCart(item) {
+        sessionStorage.setItem(item, "true");
+        cartCount++;
+        updateCartCountMessage();
+      }
+
+      function createStore() {
+        var h2 = document.createElement("h2");
+        h2.textContent = "Available products:";
+        document.body.appendChild(h2);
+
+        var list = document.createElement("ul");
+        document.body.appendChild(list);
+
+        availableItems.forEach(function(item) {
+          var listItem = document.createElement("li");
+          listItem.textContent = item;
+          listItem.addEventListener("click", function() {
+            addItemToCart(item);
+          });
+          list.appendChild(listItem);
+        });
+      }
+
+      function updateCartCountMessage() {
+        // If the message element does not exist, create it
+        if (messageElement === null) {
+          messageElement = document.createElement("p");
+          messageElement.textContent = "You previously had " + cartCount + " items in your cart.";
+          document.body.appendChild(messageElement);
+        } else {
+          // Update the text of the message element
+          messageElement.textContent = "You previously had " + cartCount + " items in your cart.";
+        }
+      }
+
+      createStore();
+      updateCartCountMessage();
+    }
+  </script>
+</body>
+</html>

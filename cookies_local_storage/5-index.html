@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <script>
+        // Check if local storage is enabled
+        function isLocalStorageEnabled() {
+            try {
+                var testKey = "test";
+                localStorage.setItem(testKey, testKey);
+                localStorage.removeItem(testKey);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        // Array of available items
+        var availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+        // Check if local storage is enabled
+        if (!isLocalStorageEnabled()) {
+            alert("Sorry, your browser does not support Web storage. Try again with a better one.");
+        } else {
+            // Create the shopping cart
+            var cartCount = Object.keys(localStorage).length;
+
+            function addItemToCart(item) {
+                localStorage.setItem(item, "true");
+                cartCount++;
+                displayCart();
+            }
+
+            function createStore() {
+                var list = document.createElement("ul");
+                document.body.appendChild(list);
+
+                availableItems.forEach(function(item) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = item;
+                    listItem.addEventListener("click", function() {
+                        addItemToCart(item);
+                    });
+                    list.appendChild(listItem);
+                });
+            }
+
+            function displayCart() {
+                var body = document.getElementsByTagName("body")[0];
+
+                if (cartCount > 0) {
+                    var message = document.createElement("p");
+                    message.textContent = "You previously had " + cartCount + " items in your cart.";
+                    body.appendChild(message);
+                }
+            }
+
+            createStore();
+            displayCart();
+        }
+    </script>
+</body>
+</html>

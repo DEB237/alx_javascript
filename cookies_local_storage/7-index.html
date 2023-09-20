@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advanced Cart System</title>
+</head>
+<body>
+  <script>
+    // Check if session storage is enabled
+    function isSessionStorageEnabled() {
+      try {
+        sessionStorage.setItem("test", "test");
+        sessionStorage.removeItem("test");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Array of available items
+    var availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+    // Global variable to store the cart list element
+    var cartList = null;
+
+    // Check if session storage is enabled
+    if (!isSessionStorageEnabled()) {
+      var body = document.getElementsByTagName("body")[0];
+
+      var alertMessage = document.createElement("p");
+      alertMessage.textContent = "Sorry, your browser does not support Session storage. Try again with a better one.";
+      body.appendChild(alertMessage);
+    } else {
+      // Create the shopping cart
+      var cart = getCartFromStorage();
+
+      function getCartFromStorage() {
+        var cartString = sessionStorage.getItem("cart");
+        return cartString ? JSON.parse(cartString) : {};
+      }
+
+      function addItemToCart(item) {
+        if (cart.hasOwnProperty(item)) {
+          cart[item]++;
+        } else {
+          cart[item] = 1;
+        }
+
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+
+      function removeItemFromCart(item) {
+        delete cart[item];
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+
+      function clearCart() {
+        
+        cart = {};
+        sessionStorage.clear();
+        displayCart();
+      }
+
+      function createStore() {
+        var h2 = document.createElement("h2");
+        h2.textContent = "Available products:";
+        document.body.appendChild(h2);
+
+        var ul = document.createElement("ul");
+        availableItems.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          li.addEventListener("click", function () {
+            addItemToCart(item);
+          });
+          ul.appendChild(li);
+        });
+        document.body.appendChild(ul);
+
+        var h2 = document.createElement("h2");
+        h2.textContent = "Your cart:";
+        document.body.appendChild(h2);
+
+        var clearCartLink = document.createElement("a");
+        clearCartLink.href = "#";
+        clearCartLink.textContent = "Clear my cart";
+        clearCartLink.addEventListener("click", clearCart);
+        document.body.appendChild(clearCartLink);
+      }
+
+      function displayCart() {
+        // If the cart list element does not exist, create it
+        if (cartList === null) {
+          cartList = document.createElement("ul");
+          cartList.id = "cart-list";
+          document.body.appendChild(cartList);
+        }
+
+        // Clear the cart list element
+        cartList.innerHTML = "";
+
+        if (Object.keys(cart).length === 0) {
+          var emptyCartMessage = document.createElement("li");
+          emptyCartMessage.textContent = "Your cart is empty";
+          cartList.appendChild(emptyCartMessage);
+        } else {
+          Object.keys(cart).forEach(function (item) {
+            var li = document.createElement("li");
+            var removeLink = document.createElement("a");
+            removeLink.href = "#";
+            removeLink.textContent = "(remove)";
+            removeLink.addEventListener("click", function () {
+              removeItemFromCart(item);
+            });
+            li.textContent = item + " x " + cart[item] + " ";
+            li.appendChild(removeLink);
+            cartList.appendChild(li);
+          });
+
+          // Show the "Clear my cart" button if the cart is not empty
+          clearCartLink.style.display = (Object.keys(cart).length === 0) ? "none" : "block";
+        }
+      }
+
+      createStore();
+      displayCart();
+    }
+  </script>
+</body>
+</html>
